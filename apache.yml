@@ -1,31 +1,8 @@
 ---
-
-- hosts: AppServer
-
-  become: yes
-
+- hosts: apache
+  sudo: yes
   tasks:
+    - name: install apache2
+      apt: name=apache2 update_cache=yes state=latest
 
-  - name: Installs nginx web server
-
-    apt:
-
-      name: nginx
-
-      state: present
-
-      update_cache: true
-
-    notify:
-
-    - start nginx
-
-  handlers:
-
-  - name: start nginx
-
-    service:
-
-      name: nginx
-
-      state: present
+  
